@@ -49,7 +49,7 @@ const RegisterForm = () => {
                         password: pass
                     })
                 })
-                if(response.status === 200){
+                if(response.ok){
                     redirect('/login')
                 }
                 setFirstName('')

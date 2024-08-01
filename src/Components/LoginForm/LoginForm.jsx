@@ -29,7 +29,7 @@ const LoginForm = () => {
                         'Content-Type': 'application/json'
                     }
                 })
-                if(response.status === 200){
+                if(response.ok){
                     navigate('/display')
                     connectSocket()
                 } else if (response.status === 401) {
@@ -73,7 +73,7 @@ const LoginForm = () => {
                         password: pass
                     })
                 })
-                if(response.status === 200){
+                if(response.ok){
                         navigate('/display')
                         connectSocket()
                 }

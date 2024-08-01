@@ -18,7 +18,7 @@ const NavBar = ({isChat}) => {
                         'Content-Type': 'application/json'
                     }
                 })
-                if(response.status === 200){
+                if(response.ok){
                     disconnectSocket()
                     navigate('/login')
                 }
