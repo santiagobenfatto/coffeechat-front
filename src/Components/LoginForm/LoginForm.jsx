@@ -4,8 +4,9 @@ import { useAuth } from '../../Context/AuthContext.jsx'
 import { useNavigate } from 'react-router-dom'
 
 
+
 const LoginForm = () => {
-    const { connectSocket, checkSession } = useAuth()
+    const { connectSocket } = useAuth()
     const navigate = useNavigate()
     const URL = 'http://localhost:3001/api/users/user/login'
 
@@ -15,8 +16,32 @@ const LoginForm = () => {
         error: false,
         message: ''
     })
-
-    //checkSession()
+    
+    const checkSession = async () => {
+        console.log('=== CHECK ===')
+        let checkURL = 'http://localhost:3001/api/users/user/check'
+                //funcion en el servidor que verifique el request.
+                const response = await fetch(checkURL, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                if(response.status === 200){
+                    navigate('/display')
+                    connectSocket()
+                } else if (response.status === 401) {
+                    console.log('Please Login Again')
+                }
+    }
+    
+    useEffect(() => {
+        checkSession()
+        
+    }, []);
+    
 
     const emailValidation = (email) => {
         const regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i
@@ -106,22 +131,31 @@ const LoginForm = () => {
             </Typography>
             </Box>
 
-            <Stack width={1} component='form' useFlexGap direction="column" alignItems="center" onSubmit={handleSubmit} sx={{
-                '& .MuiTextField-root': { width: '100%' },
-                '& .MuiOutlinedInput-notchedOutline': {
-                    borderWidth: '1px',
-                },
-                '& .MuiOutlinedInput-root': {
-                    '&:hover fieldset': {
-                        borderColor: '#16161a'
-                    }
-                },
-                boxSizing: 'border-box',
-                width: '90%',
-                maxHeight: '385px',
-                alignItems: 'center',
-                justifyContent: 'flex-start'
-            }} noValidate autoComplete='off'>
+            <Stack 
+                width={1}
+                component='form'
+                useFlexGap
+                direction="column"
+                alignItems="center"
+                onSubmit={handleSubmit}
+                noValidate
+                autoComplete='off'
+                sx={{
+                    '& .MuiTextField-root': { width: '100%' },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                        borderWidth: '1px',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                        '&:hover fieldset': {
+                            borderColor: '#16161a'
+                        }
+                    },
+                    boxSizing: 'border-box',
+                    width: '90%',
+                    maxHeight: '385px',
+                    alignItems: 'center',
+                    justifyContent: 'flex-start'
+                }}>
                 <TextField sx={{mb: '16px'}}
                     color='secondary'
                     size='small'

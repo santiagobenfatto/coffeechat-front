@@ -1,6 +1,6 @@
 import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 
-const ChatMessages = () => {
+const ChatMessages = ({messages}) => {
     
     return (
         <Box>
@@ -8,7 +8,7 @@ const ChatMessages = () => {
                 <ListItem>
                     <ListItemAvatar>
                         <Avatar 
-                        alt='User Avatar' 
+                        alt='User Avatar'
                         src='/' 
                         size="large" 
                         edge="start" 

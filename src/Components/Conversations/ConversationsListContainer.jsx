@@ -1,8 +1,21 @@
 import { Box } from '@mui/material'
 import NavBar from '../NavBar/NavBar.jsx'
 import ConversationsList from './ConversationsList.jsx'
+import { useConver } from '../../Context/ContextProvider.jsx'
 
 const ConversationsListContainer = () => {
+    
+    const { fetchConvers, convers } = useConver()
+    
+
+    
+    useEffect(() => {
+        
+        fetchConvers()
+        
+    }, []);
+
+
     return (
         <Box sx={{
             boxSizing: 'border-box',
@@ -15,7 +28,7 @@ const ConversationsListContainer = () => {
             borderColor: 'primary.light'
         }}>
             <NavBar />
-            <ConversationsList />
+            <ConversationsList convers={convers}/>
         </Box>
     )
 }

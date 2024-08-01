@@ -6,39 +6,19 @@ const AuthContext = createContext()
 
 
 const AuthProvider = ({children}) => {
-    
-    const [ isConnected, setIsConnected ] = useState(socket.connected)
-    
-        //Socket connection
+
+    const [ isConnected, setIsConnected ] = useState()
+    const [ user, setUser ] = useState()
+
         const connectSocket = () => {
             socket.connect()
-            console.log(socket)
         }
     
         const disconnectSocket = () => {
             socket.disconnect()
         }
-
-        const checkSession = async () => {
-            let URL = 'http://localhost:3001/api/users/user/check'
-            if(!isConnected){
-                //funcion en el servidor que verifique el request.
-                const response = await fetch(URL, {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                })
-                if(response.status === 200){
-                        navigate('/display')
-                        connectSocket()
-                }
-            }
-        }
-
-
+        
+        
     useEffect(() => {
 
         const onConnection = () => {
@@ -49,9 +29,17 @@ const AuthProvider = ({children}) => {
             setIsConnected(false)
         }
         
-        socket.on('connect', onConnection)
+        socket.on('connect', () => {
+            onConnection()
+        })
         socket.on('disconnect', onDisconnection)
         
+        socket.on('userData', (data) => {
+            if(data){
+            setUser(data)
+            }
+        })
+
         return () => {
             socket.off('connect', onConnection)
             socket.off('disconnect', onDisconnection)
@@ -60,13 +48,11 @@ const AuthProvider = ({children}) => {
     }, [isConnected]);
 
 
-
-  
     const contextValue = {
         isConnected,
         connectSocket,
         disconnectSocket,
-        checkSession
+        user
     }
 
     return (

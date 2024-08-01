@@ -1,6 +1,5 @@
 import { Box } from '@mui/material'
 import NavBar from '../NavBar/NavBar.jsx'
-import { SVGCoffeeBg } from '../../assets/SVGbackground.js'
 import ChatInput from './ChatInput.jsx'
 import ChatMessagesContainer from '../ChatMessages/ChatMessagesContainer.jsx'
 

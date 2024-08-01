@@ -4,7 +4,8 @@ import ConversationsListContainer from '../Conversations/ConversationsListContai
 
 
 const Display = () => {
-    return (
+    
+  return (
         <Container disableGutters maxWidth='xl' sx={{
             boxSizing: 'border-box',
             borderRadius: '8px',
@@ -19,7 +20,7 @@ const Display = () => {
             <ConversationsListContainer />
             <ChatContainer />
           </Container>
-    );
+    )
 }
 
 export default Display

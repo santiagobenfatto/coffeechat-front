@@ -3,10 +3,10 @@ import { useAuth } from '../../Context/AuthContext.jsx'
 import { useNavigate } from 'react-router-dom'
 
 const NavBar = ({isChat}) => {
-    const { isConnected, disconnectSocket } = useAuth()
+    const { isConnected, disconnectSocket, user } = useAuth()
     const navigate = useNavigate()
     const URL = 'http://localhost:3001/api/users/user/logout'
-    
+
     const handleLogout = async () => {
         if(isConnected){
             try {
@@ -48,9 +48,9 @@ const NavBar = ({isChat}) => {
             height: '80px',
             justifyContent:'center'
         }}> 
-        <Avatar alt='User Avatar' src='/' size="large" edge="start" color="inherit" sx={{ backgroundColor: 'secondary.light', mr: 2 }}/>
-        <Typography variant='body1' sx={{ flexGrow: 1, color: 'secondary.main'}}>
-                User Name
+        <Avatar alt='User Avatar' src={user.avatar_url} size="large" edge="start" color="inherit" sx={{ backgroundColor: 'secondary.light', mr: 2 }}/>
+        <Typography variant='body1' sx={{ flexGrow: 1, color: 'secondary.main', textTransform: 'capitalize'}}>
+                {user.nickname ? user.nickname : user.first_name}
             </Typography>
         </Toolbar>
         </AppBar>
@@ -64,7 +64,7 @@ const NavBar = ({isChat}) => {
             borderColor: 'primary.light'
         }}>
             <Toolbar>
-            <Avatar  alt='User Avatar' src='/' size="large" edge="start" color="inherit" sx={{ backgroundColor: 'secondary.light', mr: 2 }}/>
+            <Avatar  alt='User Avatar' src='https://i.pinimg.com/originals/ee/63/0a/ee630afacf4df49fc912ed67211176b2.jpg' size="large" edge="start" color="inherit" sx={{ backgroundColor: 'secondary.light', mr: 2 }}/>
             <Typography variant='body1' sx={{ flexGrow: 1, color: 'secondary.main'}}>
                 Coffee Chat
             </Typography>

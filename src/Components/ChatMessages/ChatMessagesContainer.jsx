@@ -4,6 +4,8 @@ import ChatMessages from './ChatMessages.jsx'
 
 const ChatMessagesContainer = () => {
     const [isUser, setIsUser] = useState(false)
+
+    const messages = []
     
     return (
         <Box sx={{
@@ -13,7 +15,7 @@ const ChatMessagesContainer = () => {
             flexDirection: 'column',
             justifyContent: 'flex-end'
         }}>
-            <ChatMessages isUser={isUser}/>
+            <ChatMessages messages={messages}/>
             
         </Box>
     );
