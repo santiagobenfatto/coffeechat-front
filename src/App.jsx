@@ -1,5 +1,6 @@
 import { Container } from '@mui/material'
 import AuthProvider from './Context/AuthContext.jsx'
+import ContextProvider from './Context/ContextProvider.jsx'
 import CustomRoutes from './Components/CustomRoutes/CustomRoutes.jsx'
 
 
@@ -14,10 +15,11 @@ const App = () => {
       p: '24px',
       m: 'none'
       }}>
-        <AuthProvider>
-          <CustomRoutes />
-        </AuthProvider>
-        
+        <ContextProvider>
+          <AuthProvider>
+            <CustomRoutes />
+          </AuthProvider>
+        </ContextProvider>
     </Container>
   )
 }

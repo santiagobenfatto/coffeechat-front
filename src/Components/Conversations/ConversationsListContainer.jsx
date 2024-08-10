@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Box } from '@mui/material'
 import NavBar from '../NavBar/NavBar.jsx'
 import ConversationsList from './ConversationsList.jsx'
@@ -5,15 +6,22 @@ import { useConver } from '../../Context/ContextProvider.jsx'
 
 const ConversationsListContainer = () => {
     
-    const { fetchConvers, convers } = useConver()
+    const { fetchConvers, fetchMessagesByConverId, convers } = useConver()
+    const [ converId, setConverId ] = useState(null)
     
 
     
     useEffect(() => {
-        
         fetchConvers()
-        
     }, []);
+
+    useEffect(() => {
+        
+        if(converId){
+            fetchMessagesByConverId(converId)
+        }
+        
+    }, [converId]);
 
 
     return (
@@ -28,7 +36,8 @@ const ConversationsListContainer = () => {
             borderColor: 'primary.light'
         }}>
             <NavBar />
-            <ConversationsList convers={convers}/>
+            
+            <ConversationsList convers={convers} onSelectConver={setConverId}/>
         </Box>
     )
 }

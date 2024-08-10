@@ -2,20 +2,23 @@ import React, { useState, useEffect } from 'react'
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 import { useAuth } from '../../Context/AuthContext.jsx'
 import { useNavigate } from 'react-router-dom'
+import Toast from '../Toast/Toast.jsx'
 
 
 
-const LoginForm = () => {
-    const { connectSocket } = useAuth()
-    const navigate = useNavigate()
-    const URL = 'http://localhost:3001/api/users/user/login'
+const Login = () => {
 
+    const [ userError, setUserError ] = useState(false)
     const [ email, setEmail ] = useState('')
     const [ pass, setPass ] = useState('')
     const [ error, setError ] = useState({
         error: false,
         message: ''
     })
+
+    const { connectSocket } = useAuth()
+    const navigate = useNavigate()
+    const URL = 'http://localhost:3001/api/users/user/login'
     
     const checkSession = async () => {
         console.log('=== CHECK ===')
@@ -76,6 +79,11 @@ const LoginForm = () => {
                 if(response.ok){
                         navigate('/display')
                         connectSocket()
+                } else {
+                    setUserError(true)
+                    setTimeout(()=> {
+                        setUserError(false)
+                    }, 5000)
                 }
                 setEmail('')
                 setPass('')
@@ -235,8 +243,9 @@ const LoginForm = () => {
                     </Typography>
                     </Typography>
             </Box>
+            {userError && <Toast type='error' message='Credenciales incorrectas, intentalo nuevamente'/> }
         </Box>
     );
 }
 
-export default LoginForm
+export default Login

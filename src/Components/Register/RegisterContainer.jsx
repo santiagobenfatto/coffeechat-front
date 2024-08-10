@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container } from '@mui/material'
-import RegisterForm from './RegisterForm.jsx'
+import Register from './Register.jsx'
 
 
-const RegisterFormContainer = () => {
+const RegisterContainer = () => {
     
   return (
     <Container disableGutters maxWidth='xl' sx={{
@@ -17,9 +17,9 @@ const RegisterFormContainer = () => {
             height: '100%',
             maxHeight:'100%'
           }}>
-            <RegisterForm />
+            <Register />
     </Container>
     );
 }
 
-export default RegisterFormContainer;
+export default RegisterContainer;

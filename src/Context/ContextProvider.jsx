@@ -4,16 +4,16 @@ const Context = createContext()
 
 
 const ContextProvider = ({children}) => {
-    const [ convers, setConvers ] = useState({})
+    const [ convers, setConvers ] = useState([])
+    const [ converId, setConverId ] = useState(null)
     
-
     const conversURL = 'http://localhost:3001/api/users/user/convers'
     const messagesURL = 'http://localhost:3001/api/convers/conver/messages'
 
 
     const fetchConvers = async () => {
         try {
-            const response = fetch(conversURL, {
+            const response = await fetch(conversURL, {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
@@ -21,10 +21,13 @@ const ContextProvider = ({children}) => {
                     'Content-Type': 'application/json'
                 }
             })
-            if(response.status.ok){
-                setConvers(response)
+            if(response.ok){
+                const data = await response.json()
+                setConvers(data)
                 return convers
-            }       
+            } else {
+                setConvers([])
+            }
         } catch (error) {
             console.log(error)
         }
@@ -33,11 +36,10 @@ const ContextProvider = ({children}) => {
     
     
     const fetchMessagesByConverId = async (converId) => {
-
         try {
-            const existingConver = convers.filter( conver => conver.converId == converId)
+            const existingConver = convers.find( conver => conver.converId == converId)
 
-        if(existingConver && existingConver.messages &&  existingConver.lentgh > 0){
+        if(existingConver && existingConver.messages &&  existingConver.length > 0){
             return existingConver.messages
         } else {
             const response = await fetch(messagesURL, {
@@ -50,6 +52,7 @@ const ContextProvider = ({children}) => {
             })
             if(response.ok){
                 const data = await response.json()
+                setConverId(converId)
                 setConvers((prevConvers) => {
                     prevConvers.map( conver => 
                         conver.conver_id == converId
@@ -62,12 +65,11 @@ const ContextProvider = ({children}) => {
         } catch (error) {
             console.log(error)
         }
-        
     }
-
     
     const contextValue = {
         convers,
+        converId,
         fetchConvers,
         fetchMessagesByConverId,
     }

@@ -5,7 +5,9 @@ const ChatMessages = ({messages}) => {
     return (
         <Box>
             <List>
-                <ListItem>
+                {messages.map((message) => {
+                    return (
+<ListItem>
                     <ListItemAvatar>
                         <Avatar 
                         alt='User Avatar'
@@ -29,10 +31,14 @@ const ChatMessages = ({messages}) => {
                         borderRadius: '8px'
                     }}>
                         <Typography variant='body2'>
-                            {'Hola, estoy llegando, espero que esté todo bien! (:'}
+                            {message.content}
                         </Typography>
                     </ListItemText>
                 </ListItem>
+                    )
+                })
+                }
+                
             </List>
         </Box>
     );

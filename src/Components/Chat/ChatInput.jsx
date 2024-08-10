@@ -1,13 +1,12 @@
-import { Box, IconButton, TextField } from '@mui/material'
-import SendIcon from '@mui/icons-material/Send'
-import { socket } from '../../socket/socket'
 import { useState } from 'react'
-import { useConver } from '../../Context/ContextProvider.js'
+import { socket } from '../../socket/socket'
+import SendIcon from '@mui/icons-material/Send'
+import { Box, IconButton, TextField } from '@mui/material'
+//import { useConver } from '../../Context/ContextProvider.jsx'
 
 //Pasar info a través de props
 const ChatInput = () => {
-    const { saveMessages, getConverMessages } = useConver()
-    
+
     const [ message, setMessage ] = useState({
         sender: '',
         receiver: '',
@@ -60,7 +59,7 @@ const ChatInput = () => {
                 focused={false}
                 type='text'
                 value={message.text}
-                onChange={handleChange}
+                onChange={() => handleChange}
                 sx={{
                     backgroundColor: 'primary.light',
                     opacity: '0.8',

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import Toast from '../Toast/Toast.jsx'
 
-
-const RegisterForm = () => {
-
+const Register = () => {
+    
+    const [ success, setSuccess ] = useState(false)
     const [ email, setEmail ] = useState('')
     const [ pass, setPass ] = useState('')
     const [ firstName, setFirstName ] = useState('')
@@ -14,6 +15,7 @@ const RegisterForm = () => {
         message: ''
     })
 
+    const navigate = useNavigate()
     const URL = 'http://localhost:3001/api/users/user/register'
 
 
@@ -50,7 +52,10 @@ const RegisterForm = () => {
                     })
                 })
                 if(response.ok){
-                    redirect('/login')
+                    setSuccess(true)
+                    setTimeout(()=>{
+                        navigate('/login')
+                    }, 5000)
                 }
                 setFirstName('')
                 setLastName('')
@@ -169,18 +174,21 @@ const RegisterForm = () => {
                     width: '100%',
                     gap: '16px'
                 }}>
-                    <Button href='/' variant='text' 
-                    sx={{
-                        fontFamily: 'Poppins',
-                        letterSpacing: '1px',
-                        fontWeight: 500,
-                        width: '100%',
-                        backgroundColor: 'secondary.main',
-                            ':hover': {
-                                backgroundColor: 'secondary.light'
-                            }
-                        }}>
-                        Registrarse
+                    <Button 
+                        type='submit'
+                        variant='text'
+                        disableElevation
+                        sx={{
+                            fontFamily: 'Poppins',
+                            letterSpacing: '1px',
+                            fontWeight: 500,
+                            width: '100%',
+                            backgroundColor: 'secondary.main',
+                                ':hover': {
+                                    backgroundColor: 'secondary.light'
+                                }
+                            }}>
+                            Registrarse
                     </Button>
 
                 </Box>
@@ -203,8 +211,9 @@ const RegisterForm = () => {
                     </Typography>
                     </Typography>
             </Box>
+            {success && <Toast type='success' message='Usuario creado exitosamente' />}
         </Box>
     );
 }
 
-export default RegisterForm
+export default Register

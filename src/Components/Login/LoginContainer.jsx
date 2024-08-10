@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container } from '@mui/material'
-import LoginForm from './LoginForm'
+import Login from './Login.jsx'
 
 
-const LoginFormContainer = () => {
+const LoginContainer = () => {
 
     return (
         <Container disableGutters maxWidth='xl' sx={{
@@ -17,9 +17,9 @@ const LoginFormContainer = () => {
             height: '100%',
             maxHeight:'100%'
           }}>
-            <LoginForm />
+            <Login />
         </Container>
     );
 }
 
-export default LoginFormContainer
+export default LoginContainer

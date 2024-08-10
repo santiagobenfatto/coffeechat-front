@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ProtectedRoute } from '../ProtectedRoutes/ProtectedRoute.jsx'
 import { useAuth } from '../../Context/AuthContext.jsx'
-import LoginFormContainer from '../LoginForm/LoginFormContainer.jsx'
-import RegisterFormContainer from '../Register/RegisterFormContainer.jsx'
+import LoginContainer from '../Login/LoginContainer.jsx'
+import RegisterContainer from '../Register/RegisterContainer.jsx'
 import Display from '../Display/Display.jsx'
 
 const CustomRoutes = () => {
@@ -11,15 +11,15 @@ const CustomRoutes = () => {
     const publicRoutes = [
         {
             path:'/login',
-            element: <LoginFormContainer />
+            element: <LoginContainer />
         },
         {
             path:'/register',
-            element: <RegisterFormContainer />
+            element: <RegisterContainer />
         },
         {
             path:'*',
-            element: <LoginFormContainer />
+            element: <LoginContainer />
         }
 
     ]
