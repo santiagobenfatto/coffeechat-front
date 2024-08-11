@@ -1,13 +1,13 @@
 import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 
-const ChatMessages = ({messages}) => {
+const MessageList = ({messages}) => {
     
     return (
         <Box>
             <List>
                 {messages.map((message) => {
                     return (
-<ListItem>
+                    <ListItem>
                     <ListItemAvatar>
                         <Avatar 
                         alt='User Avatar'
@@ -44,4 +44,4 @@ const ChatMessages = ({messages}) => {
     );
 }
 
-export default ChatMessages
+export default MessageList

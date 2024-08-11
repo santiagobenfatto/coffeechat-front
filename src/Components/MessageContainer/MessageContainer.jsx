@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useConver } from '../../Context/ContextProvider.jsx'
-import ChatMessages from './ChatMessages.jsx'
+import MessageList from './MessageList.jsx'
 import { Box } from '@mui/material'
 
-const ChatMessagesContainer = () => {
+const MessageContainer = () => {
     //consumir datos del usuario para pasarlo por props.
     const { convers, converId } = useConver()
     const [ messages, setMessages ] = useState([])
@@ -28,9 +28,9 @@ const ChatMessagesContainer = () => {
             flexDirection: 'column',
             justifyContent: 'flex-end'
         }}>
-            <ChatMessages messages={messages} />
+            <MessageList messages={messages} />
         </Box>
     )
 }
 
-export default ChatMessagesContainer
+export default MessageContainer

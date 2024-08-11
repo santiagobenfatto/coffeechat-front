@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Box } from '@mui/material'
 import NavBar from '../NavBar/NavBar.jsx'
-import ConversationsList from './ConversationsList.jsx'
+import ConversationsList from '../Conversations/ConversationsList.jsx'
 import { useConver } from '../../Context/ContextProvider.jsx'
 
-const ConversationsListContainer = () => {
+const Sidebar
+ = () => {
     
     const { fetchConvers, fetchMessagesByConverId, convers } = useConver()
     const [ converId, setConverId ] = useState(null)
@@ -42,4 +43,5 @@ const ConversationsListContainer = () => {
     )
 }
 
-export default ConversationsListContainer
+export default Sidebar
+

@@ -2,10 +2,9 @@ import { useState } from 'react'
 import { socket } from '../../socket/socket'
 import SendIcon from '@mui/icons-material/Send'
 import { Box, IconButton, TextField } from '@mui/material'
-//import { useConver } from '../../Context/ContextProvider.jsx'
 
-//Pasar info a través de props
-const ChatInput = () => {
+
+const InputArea = () => {
 
     const [ message, setMessage ] = useState({
         sender: '',
@@ -95,4 +94,4 @@ const ChatInput = () => {
     )
 }
 
-export default ChatInput
+export default InputArea

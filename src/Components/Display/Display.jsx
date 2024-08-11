@@ -1,6 +1,6 @@
 import { Container } from '@mui/material'
-import ChatContainer from '../Chat/ChatContainer.jsx'
-import ConversationsListContainer from '../Conversations/ConversationsListContainer.jsx'
+import MainContent from '../MainContent/MainContent.jsx'
+import Sidebar from '../Sidebar/Sidebar.jsx'
 
 
 const Display = () => {
@@ -17,8 +17,8 @@ const Display = () => {
             height: '100%',
             maxHeight: '100%'
           }}>
-            <ConversationsListContainer />
-            <ChatContainer />
+            <Sidebar />
+            <MainContent />
           </Container>
     )
 }

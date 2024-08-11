@@ -1,9 +1,9 @@
 import { Box } from '@mui/material'
 import NavBar from '../NavBar/NavBar.jsx'
-import ChatInput from './ChatInput.jsx'
-import ChatMessagesContainer from '../ChatMessages/ChatMessagesContainer.jsx'
+import InputArea from '../InputArea/InputArea.jsx'
+import MessageContainer from '../MessageContainer/MessageContainer.jsx'
 
-const ChatContainer = () => {
+const MainContent = () => {
     return (
         <Box sx={{
             boxSizing: 'border-box',
@@ -15,10 +15,10 @@ const ChatContainer = () => {
             height: '100%',
         }}>
             <NavBar isChat/>
-            <ChatMessagesContainer />
-            <ChatInput />
+            <MessageContainer />
+            <InputArea />
         </Box>
     )
 }
 
-export default ChatContainer
+export default MainContent
