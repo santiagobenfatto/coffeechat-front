@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import Toast from '../Toast/Toast.jsx'
+import Toast from '../../Utilities/Toast/Toast.jsx'
 
 const Register = () => {
     

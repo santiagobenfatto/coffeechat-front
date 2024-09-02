@@ -1,6 +1,6 @@
 import { Container } from '@mui/material'
-import MainContent from '../MainContent/MainContent.jsx'
-import Sidebar from '../Sidebar/Sidebar.jsx'
+import MainContent from '../../Components/MainContent/MainContent.jsx'
+import Sidebar from '../../Components/Sidebar/Sidebar.jsx'
 
 
 const Display = () => {

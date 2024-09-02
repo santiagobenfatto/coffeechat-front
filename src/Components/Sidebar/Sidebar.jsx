@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react'
 import { Box } from '@mui/material'
+import { useConver } from '../../Context/ConverContext.jsx'
 import NavBar from '../NavBar/NavBar.jsx'
+import Contacts from '../Contacts/Contacts.jsx'
+import SearchContainer from '../SearchMenu/SearchContainer.jsx'
 import ConversationsList from '../Conversations/ConversationsList.jsx'
-import { useConver } from '../../Context/ContextProvider.jsx'
 
-const Sidebar
- = () => {
+const Sidebar = () => {
     
-    const { fetchConvers, fetchMessagesByConverId, convers } = useConver()
+    const { fetchConvers, fetchMessagesByConverId, convers, searcher } = useConver()
     const [ converId, setConverId ] = useState(null)
-    
 
-    
+    const component = {
+        convers: <ConversationsList convers={convers} onSelectConver={setConverId}/>,
+        contacts: <Contacts />
+    }
+    console.log(searcher)//'onClick' no string
+
     useEffect(() => {
         fetchConvers()
     }, []);
@@ -37,8 +42,8 @@ const Sidebar
             borderColor: 'primary.light'
         }}>
             <NavBar />
-            
-            <ConversationsList convers={convers} onSelectConver={setConverId}/>
+            <SearchContainer />
+            {component[searcher]}
         </Box>
     )
 }

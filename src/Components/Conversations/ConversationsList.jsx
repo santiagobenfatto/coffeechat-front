@@ -1,13 +1,10 @@
 import React from 'react'
-import SearchContainer from '../SearchMenu/SearchContainer.jsx'
-//import { useConver } from '../../Context/ContextProvider.jsx'
 import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, Typography } from '@mui/material'
 
 
 const ConversationsList = ({ convers, onSelectConver }) => {
     return (
       <>
-        <SearchContainer />
         <List
           sx={{
             flexGrow: 1,

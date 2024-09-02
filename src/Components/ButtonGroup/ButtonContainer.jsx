@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 import ButtonSelect from './ButtonSelect.jsx'
 
 const ButtonContainer = () => {
-    
+
     return (
         <Box 
         sx={{
@@ -13,10 +13,10 @@ const ButtonContainer = () => {
             my: '8px'
         }}
         >
-            <ButtonSelect type={{name: 'convers'}} />
-            <ButtonSelect type={{name: 'requests'}} />
+            <ButtonSelect type='convers' />
+            <ButtonSelect type='contacts' />
         </Box>
-    );
+    )
 }
 
-export default ButtonContainer;
+export default ButtonContainer

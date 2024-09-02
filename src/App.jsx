@@ -1,7 +1,8 @@
 import { Container } from '@mui/material'
 import AuthProvider from './Context/AuthContext.jsx'
-import ContextProvider from './Context/ContextProvider.jsx'
-import CustomRoutes from './Components/CustomRoutes/CustomRoutes.jsx'
+import CustomRoutes from './Routes/CustomRoutes/CustomRoutes.jsx'
+import { store } from './app/store'
+import { Provider } from 'react-redux'
 
 
 const App = () => {
@@ -15,11 +16,11 @@ const App = () => {
       p: '24px',
       m: 'none'
       }}>
-        <ContextProvider>
+        <Provider store={store}>
           <AuthProvider>
             <CustomRoutes />
           </AuthProvider>
-        </ContextProvider>
+        </Provider>
     </Container>
   )
 }
